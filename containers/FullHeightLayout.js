@@ -1,7 +1,3 @@
 export default function FullHeightLayout({ children }) {
-    return (
-        <div className="FullHeightLayout">
-            {children}
-        </div>
-    )
+  return <div className="FullHeightLayout">{children}</div>;
 }

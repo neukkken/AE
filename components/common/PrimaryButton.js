@@ -1,7 +1,7 @@
 export default function PrimaryButton({ children }) {
-    return (
-        <button className="PrimaryButton" type="button">
-            {children}
-        </button>
-    )
+  return (
+    <button className="PrimaryButton" type="sumbit">
+      {children}
+    </button>
+  );
 }

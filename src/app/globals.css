@@ -10,13 +10,12 @@ h5,
 h5 {
   margin: 0px;
   font-weight: bolder;
-
 }
 
 html {
   width: 100%;
   height: 100vh;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   scroll-behavior: smooth;
 }
 
@@ -89,7 +88,6 @@ body {
   outline: none;
   width: 100%;
   background-color: transparent;
-
 }
 
 .MainHeader .searchBar svg {
@@ -101,7 +99,8 @@ body {
   opacity: 60%;
 }
 
-.CardProject, .CardConvocatoria {
+.CardProject,
+.CardConvocatoria {
   width: 370px;
   height: 320px;
   display: flex;
@@ -110,7 +109,8 @@ body {
   transition: ease-in-out 0.2s;
 }
 
-.CardProject span, .CardConvocatoria span{
+.CardProject span,
+.CardConvocatoria span {
   font-size: 10px;
   margin: 0px;
   font-weight: 700;
@@ -133,22 +133,26 @@ body {
   font-weight: bold;
 }
 
-.CardProject img, .CardConvocatoria img{
+.CardProject img,
+.CardConvocatoria img {
   width: 100%;
   height: 195px;
   background-color: #919191;
 }
 
-.CardProject h1, .CardConvocatoria h1 {
+.CardProject h1,
+.CardConvocatoria h1 {
   font-size: 20px;
 }
 
-.CardProject p , .CardConvocatoria p{
+.CardProject p,
+.CardConvocatoria p {
   margin: 0px;
   font-size: 10px;
 }
 
-.CardProject:hover , .CardConvocatoria:hover{
+.CardProject:hover,
+.CardConvocatoria:hover {
   transform: scale(102%);
 }
 
@@ -173,7 +177,7 @@ footer {
   justify-content: space-between;
   align-items: center;
   position: fixed;
-  background-color: #F1F1F1;
+  background-color: #f1f1f1;
   border-top: solid 1px #000;
   font-family: monospace;
   font-weight: bold;
@@ -209,7 +213,6 @@ footer span a:hover {
 .StrategicAxis p {
   font-size: 15px;
   font-weight: 400;
-
 }
 
 .ProjectDetail img {
@@ -223,7 +226,6 @@ footer span a:hover {
   padding: 5px 15px;
   transition: 0.3s;
   box-shadow: 0px 5px 10px #00000036;
-
 }
 
 .ProjectDetail .DocumentDownload {
@@ -267,7 +269,6 @@ footer span a:hover {
 
 .FormNav h1 {
   font-size: 25px;
-
 }
 
 .FormNav input {
@@ -286,30 +287,30 @@ footer span a:hover {
   align-items: center;
 }
 
-.FormNav section {
+.FormNav label {
   display: flex;
   justify-content: space-between;
   width: 90%;
   align-items: center;
 }
 
-.FormNav section span {
+.FormNav label span {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 
-.FormNav section span a {
+.FormNav label span a {
   font-size: 10px;
-  color: #2400FF;
+  color: #2400ff;
   cursor: pointer;
 }
 
-.FormNav section span a:hover {
+.FormNav label span a:hover {
   text-decoration: underline;
 }
 
-.ProfileEmpresas{
+.ProfileEmpresas {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -317,32 +318,29 @@ footer span a:hover {
   width: 100%;
 }
 
-
-
-.ProfileEmpresas .ProfileImg{
+.ProfileEmpresas .ProfileImg {
   width: 100px;
   height: 80px;
   background-color: #919191;
 }
 
-.ProfileEmpresas h1{
+.ProfileEmpresas h1 {
   font-size: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
 }
-.ProfileEmpresas h1 svg{
+.ProfileEmpresas h1 svg {
   transition: ease-in-out 0.3s;
   cursor: pointer;
 }
 
-
-.ProfileEmpresas h1 svg:hover{
+.ProfileEmpresas h1 svg:hover {
   transform: scale(103%) translateY(-2px);
 }
 
-.ProfileEmpresas section{
+.ProfileEmpresas section {
   display: flex;
   flex-wrap: wrap;
   width: 80%;
@@ -352,7 +350,7 @@ footer span a:hover {
   gap: 30px;
 }
 
-.ProfileEmpresas section aside{
+.ProfileEmpresas section aside {
   display: flex;
   flex-direction: column;
   width: 50%;
@@ -362,7 +360,7 @@ footer span a:hover {
   box-shadow: 0px 5px 4px #00000056;
 }
 
-.CardProjectResumen{
+.CardProjectResumen {
   width: 80%;
   height: 75px;
   display: flex;
@@ -374,18 +372,20 @@ footer span a:hover {
   cursor: pointer;
 }
 
-.CardProjectResumen:hover, .CardRequest:hover{
+.CardProjectResumen:hover,
+.CardRequest:hover {
   box-shadow: 0px 8px 4px #00000056;
   transform: translateY(-3px);
 }
 
-.CardProjectResumen img, .CardRequest img{
+.CardProjectResumen img,
+.CardRequest img {
   width: 77px;
   height: 50px;
   background-color: #919191;
 }
 
-.CardRequest{
+.CardRequest {
   display: flex;
   width: 380px;
   transition: ease-in-out 0.3s;
@@ -397,7 +397,6 @@ footer span a:hover {
   align-items: center;
   padding: 0px 30px;
 }
-.CardRequest span{
+.CardRequest span {
   width: 70%;
 }
-
