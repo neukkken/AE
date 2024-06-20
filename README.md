@@ -12,6 +12,12 @@ pnpm dev
 bun dev
 ```
 
+## API
+the url api: https://projetback-r7o8.onrender.com/
+
+## API DOCUMENTATION
+https://projetback-r7o8.onrender.com/api
+
 ```
 use camelCase
 ```
