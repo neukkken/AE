@@ -1,0 +1,402 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h5 {
+  margin: 0px;
+  font-weight: bolder;
+}
+
+html {
+  width: 100%;
+  height: 100vh;
+  font-family: "Roboto";
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  background-color: white;
+}
+
+.MainHeader {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  border-bottom: solid 1px #0000003d;
+  padding-bottom: 10px;
+  background-color: #f1f1f141;
+  box-shadow: 5px 0px 10px #0000006e;
+}
+
+.MainHeader h1 {
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.MainHeader nav {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 70px;
+}
+
+.MainHeader nav li {
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 15px;
+  transition: ease-in-out 0.3s;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.MainHeader nav li:hover {
+  color: #159900;
+  transform: scale(102%);
+}
+
+.MainHeader .searchBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  width: 290px;
+  border-bottom: solid 1px #000;
+  border-right: solid 1px #000;
+  padding: 5px 15px;
+}
+
+.MainHeader .searchBar:focus {
+  transform: scale(105%);
+}
+
+.MainHeader .searchBar input {
+  font-family: monospace;
+  outline: none;
+  width: 100%;
+  background-color: transparent;
+}
+
+.MainHeader .searchBar svg {
+  opacity: 40%;
+  cursor: pointer;
+}
+
+.MainHeader .searchBar svg:hover {
+  opacity: 60%;
+}
+
+.CardProject,
+.CardConvocatoria {
+  width: 370px;
+  height: 320px;
+  display: flex;
+  cursor: pointer;
+  flex-direction: column;
+  transition: ease-in-out 0.2s;
+}
+
+.CardProject span,
+.CardConvocatoria span {
+  font-size: 10px;
+  margin: 0px;
+  font-weight: 700;
+}
+
+.Category {
+  border: solid 1px #000;
+  padding: 0px 20px;
+  width: fit-content;
+  text-align: center;
+  font-weight: bold;
+}
+
+.Date {
+  opacity: 60%;
+}
+
+.ProjectOwner {
+  color: #159900;
+  font-weight: bold;
+}
+
+.CardProject img,
+.CardConvocatoria img {
+  width: 100%;
+  height: 195px;
+  background-color: #919191;
+}
+
+.CardProject h1,
+.CardConvocatoria h1 {
+  font-size: 20px;
+}
+
+.CardProject p,
+.CardConvocatoria p {
+  margin: 0px;
+  font-size: 10px;
+}
+
+.CardProject:hover,
+.CardConvocatoria:hover {
+  transform: scale(102%);
+}
+
+.ContainerLayout {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  margin: 30px 0 0px 0;
+  padding-bottom: 60px;
+}
+
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  bottom: 0;
+  height: 47px;
+  width: 100%;
+  padding: 0px 5%;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  background-color: #f1f1f1;
+  border-top: solid 1px #000;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+footer span a {
+  margin: 0px 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+footer span a:hover {
+  color: #159900;
+}
+
+.ProjectDetail {
+  width: 70%;
+  display: flex;
+  margin: 30px auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-bottom: 60px;
+}
+
+.Location {
+  background-color: black;
+  color: white;
+  padding: 0px 20px;
+  border: solid 1px #000;
+}
+
+.StrategicAxis p {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.ProjectDetail img {
+  width: 100%;
+  height: 360px;
+  background-color: #919191;
+}
+
+.PrimaryButton {
+  font-weight: bolder;
+  padding: 5px 15px;
+  transition: 0.3s;
+  box-shadow: 0px 5px 10px #00000036;
+}
+
+.ProjectDetail .DocumentDownload {
+  display: flex;
+  flex-wrap: wrap;
+  cursor: pointer;
+  gap: 30px;
+}
+
+.ProjectDetail .DocumentDownload svg {
+  transition: 0.2s ease-in;
+}
+
+.ProjectDetail .DocumentDownload svg:hover {
+  transform: translateY(-2px);
+}
+
+.PrimaryButton:hover {
+  background-color: black;
+  color: white;
+  transform: translateY(-1px);
+}
+
+.ProjectDetail .Objetivos,
+.Integrants {
+  display: flex;
+  flex-direction: column;
+}
+
+.FormNav {
+  width: 400px;
+  height: min-content;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 5px 20px #00000056;
+  padding: 30px;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.FormNav h1 {
+  font-size: 25px;
+}
+
+.FormNav input {
+  box-shadow: 0px 5px 4px #00000056;
+  padding: 15px 15px;
+  width: 90%;
+  height: 35px;
+  outline: none;
+}
+
+.FullHeightLayout {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.FormNav section {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  align-items: center;
+}
+
+.FormNav section span {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.FormNav section span a {
+  font-size: 10px;
+  color: #2400ff;
+  cursor: pointer;
+}
+
+.FormNav section span a:hover {
+  text-decoration: underline;
+}
+
+.ProfileEmpresas {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.ProfileEmpresas .ProfileImg {
+  width: 100px;
+  height: 80px;
+  background-color: #919191;
+}
+
+.ProfileEmpresas h1 {
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.ProfileEmpresas h1 svg {
+  transition: ease-in-out 0.3s;
+  cursor: pointer;
+}
+
+.ProfileEmpresas h1 svg:hover {
+  transform: scale(103%) translateY(-2px);
+}
+
+.ProfileEmpresas section {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.ProfileEmpresas section aside {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10px 25px;
+  box-shadow: 0px 5px 4px #00000056;
+}
+
+.CardProjectResumen {
+  width: 80%;
+  height: 75px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  box-shadow: 0px 5px 4px #00000056;
+  margin: 10px auto;
+  transition: ease-in-out 0.2s;
+  cursor: pointer;
+}
+
+.CardProjectResumen:hover,
+.CardRequest:hover {
+  box-shadow: 0px 8px 4px #00000056;
+  transform: translateY(-3px);
+}
+
+.CardProjectResumen img,
+.CardRequest img {
+  width: 77px;
+  height: 50px;
+  background-color: #919191;
+}
+
+.CardRequest {
+  display: flex;
+  width: 380px;
+  transition: ease-in-out 0.3s;
+  height: 100px;
+  box-shadow: 0px 5px 4px #00000056;
+  justify-content: space-between;
+  font-size: 15px;
+  font-weight: 700;
+  align-items: center;
+  padding: 0px 30px;
+}
+.CardRequest span {
+  width: 70%;
+}

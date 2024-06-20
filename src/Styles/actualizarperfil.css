@@ -1,0 +1,72 @@
+/* Estilos para el contenedor principal */
+.contenedor-principal {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Alineación hacia arriba */
+  height:auto; /* Altura mínima del viewport menos la altura del header */
+  background-color: #d7daf5; /* Color de fondo */
+  padding: 20px; /* Espaciado interno */
+}
+
+/* Estilos para el contenedor del formulario */
+.contenedor-formulario {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Ancho máximo del contenedor */
+  max-width: 800px; /* Ancho máximo del formulario */
+  margin: auto; /* Margen automático para centrar horizontalmente */
+}
+
+/* Estilos para el formulario */
+.formulario {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.campo {
+  margin-bottom: 20px;
+}
+
+.campo label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.campo input,
+.campo textarea,
+.campo select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+
+.titulo {
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
