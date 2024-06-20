@@ -1,32 +1,41 @@
-'use client'
+"use client";
 import CardProjectResumen from "../../../../components/common/CardProjectResumen";
 import EmpresariosLayout from "../../../../containers/EmpresariosLayout";
 import { useState, useEffect } from "react";
-const URL_API_LOGIN= "https://projetback-r7o8.onrender.com/auth/login";
+const URL_API_LOGIN = "https://projetback-r7o8.onrender.com/auth/login";
 const URL_API_AUTH = "https://projetback-r7o8.onrender.com/auth/profile";
+import Auth from "../../../../utils/helperAuth";
 
-function getProfileData(){
-  
-
-}
+function getProfileData() {}
 
 export default function Perfil() {
+  Auth()
 
-  const [data, setData] = useState('')
-  const [token, setToken] = useState(localStorage.getItem('token'))
+  const [data, setData] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem("token"));
+
+  if(data == null){
+    return(
+      <>
+        cargando..
+      </>
+    )
+  }
 
   useEffect(() => {
     fetch(URL_API_AUTH, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
-      }
-    }).then(response => response.json())
-    .then(data => setData(data.user))
-  }, [])
-  
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => setData(data.user));
+  }, []);
 
+  
+    
   return (
     <EmpresariosLayout>
       <section className="ProfileEmpresas">
@@ -55,10 +64,9 @@ export default function Perfil() {
           <aside>
             <h2>Informacion</h2>
             <span>Nombre: {data.nombre}</span>
-            <span>Apellidos:</span>
-            <span>Correo Electronico:</span>
-            <span>Numero Telefonico: </span>
-            <span>Tipo de empresa:</span>
+            <span>Apellidos: {data.apellido}</span>
+            <span>Correo Electronico: {data.email}</span>
+            <span>Numero Telefonico: {data.telefono}</span>
           </aside>
           <aside>
             <h2>Proyectos Apoyados</h2>
@@ -78,4 +86,6 @@ export default function Perfil() {
       </section>
     </EmpresariosLayout>
   );
+
+  
 }

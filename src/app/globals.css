@@ -222,6 +222,7 @@ footer span a:hover {
 }
 
 .PrimaryButton {
+  border-radius: 10px;
   font-weight: bolder;
   padding: 5px 15px;
   transition: 0.3s;
@@ -265,6 +266,7 @@ footer span a:hover {
   justify-content: center;
   align-items: center;
   gap: 20px;
+  border-radius: 10px;
 }
 
 .FormNav h1 {
@@ -272,6 +274,7 @@ footer span a:hover {
 }
 
 .FormNav input {
+  border-radius: 5px;
   box-shadow: 0px 5px 4px #00000056;
   padding: 15px 15px;
   width: 90%;
@@ -288,6 +291,7 @@ footer span a:hover {
 }
 
 .FormNav label {
+
   display: flex;
   justify-content: space-between;
   width: 90%;
@@ -307,6 +311,19 @@ footer span a:hover {
 }
 
 .FormNav label span a:hover {
+  text-decoration: underline;
+}
+
+.FormNav section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.FormNav section a{
+  font-size: 10px;
+  color: rgba(0, 0, 255, 0.61);
   text-decoration: underline;
 }
 

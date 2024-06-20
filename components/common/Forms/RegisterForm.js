@@ -1,7 +1,32 @@
+'use client'
 import Link from "next/link";
 import PrimaryButton from "../PrimaryButton";
+import { useState, useEffect } from "react";
+
+const URL_API_REGISTER = 'https://projetback-r7o8.onrender.com/auth/usuario'
 
 export default function RegisterForm() {
+  const [inputName, setInputName] = useState('')
+  const [inputSecondName, setInputSecondName] = useState('')
+  const [inputEmail, setInputEmail] = useState('')
+  const [inputNumCC, setInputNumCC] = useState('')
+  const [inputTel, setInputTel] = useState('')
+  const [inputCarac, setInputCarac] = useState('')
+  
+
+  function Register(){
+    let data = {
+      "nombre": "string",
+      "apellido": "string",
+      "email": "string",
+      "numIdentificacion": "string",
+      "telefono": "string",
+      "caracterizacion": "string",
+      "contrasena": "string",
+      "role": {}
+    }
+  }
+
   return (
     <form className="FormNav">
       <h1>Registro</h1>
@@ -14,10 +39,10 @@ export default function RegisterForm() {
       <input type="password" placeholder="Confirmar Contraseña" />
       <input type="text" placeholder="Tipo de empresa" />
       <section>
-        <span>
-          <a href="/iniciarsesion">Ya tienes cuenta?</a>
-        </span>
         <PrimaryButton>Registrar</PrimaryButton>
+        <span>
+          <Link href="/iniciarsesion">Ya tienes cuenta?</Link>
+        </span>
       </section>
     </form>
   );
