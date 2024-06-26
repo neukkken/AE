@@ -2,25 +2,12 @@
 import CardProjectResumen from "../../../../components/common/CardProjectResumen";
 import EmpresariosLayout from "../../../../containers/EmpresariosLayout";
 import { useState, useEffect } from "react";
-const URL_API_LOGIN = "https://projetback-r7o8.onrender.com/auth/login";
 const URL_API_AUTH = "https://projetback-r7o8.onrender.com/auth/profile";
-import Auth from "../../../../utils/helperAuth";
-
-function getProfileData() {}
 
 export default function Perfil() {
-  Auth()
 
   const [data, setData] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem("token"));
-
-  if(data == null){
-    return(
-      <>
-        cargando..
-      </>
-    )
-  }
+  const [token, setToken] = useState(localStorage.getItem('token'));
 
   useEffect(() => {
     fetch(URL_API_AUTH, {
@@ -34,8 +21,15 @@ export default function Perfil() {
       .then((data) => setData(data.user));
   }, []);
 
-  
-    
+  if(data == null){
+    return(
+      <>
+        cargando..
+      </>
+    )
+  }
+
+
   return (
     <EmpresariosLayout>
       <section className="ProfileEmpresas">

@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import PrimaryButton from "../PrimaryButton";
 import { useState, useEffect } from "react";
@@ -34,23 +33,28 @@ export default function SignInForm() {
       contrasena: inputPassword,
     };
 
-    const response = await fetch(URL_API_LOGIN, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    if (inputEmail !== '' && inputPassword !== ''){
+      const response = await fetch(URL_API_LOGIN, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-    const result = await response.json();
-    localStorage.setItem("token", result.access_token);
-    setToken(localStorage.getItem("token"));
+      const result = await response.json();
+      localStorage.setItem("token", result.access_token);
+      setToken(localStorage.getItem("token"));
 
-    if (!response.ok) {
-      throw new Error("Error al iniciar sesión");
-    } else {
-      AuthUser();
-    }
+      if (!response.ok) {
+        throw new Error("Error al iniciar sesión");
+      }   else {
+        AuthUser();
+      }
+
+    } else if (inputEmail == null || inputPassword == null){
+      prompt('Hola')
+    }    
   };
 
   const AuthUser = async () => {

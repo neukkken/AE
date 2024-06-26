@@ -417,3 +417,24 @@ footer span a:hover {
 .CardRequest span {
   width: 70%;
 }
+
+.spinnerLoader{
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 30px;
+}
+
+.spinnerLoader .spinner{
+  
+}
+
+
+@keyframes identifier {
+  
+}

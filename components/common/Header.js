@@ -5,7 +5,7 @@ import Auth from "../../utils/helperAuth";
 
 export default function Header() {
   function logOut() {
-    localStorage.clear();
+    localStorage.removeItem('token');
     Auth();
   }
 
