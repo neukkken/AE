@@ -3,6 +3,7 @@ import CardProjectResumen from "../../../../components/common/CardProjectResumen
 import EmpresariosLayout from "../../../../containers/EmpresariosLayout";
 import { useState, useEffect } from "react";
 const URL_API_AUTH = "https://projetback-r7o8.onrender.com/auth/profile";
+import Loader from "@/app/loader/page";
 
 export default function Perfil() {
 
@@ -18,17 +19,16 @@ export default function Perfil() {
       },
     })
       .then((response) => response.json())
-      .then((data) => setData(data.user));
+      .then((data) => setData(data.sub));
   }, []);
 
   if(data == null){
     return(
-      <>
-        cargando..
-      </>
+      <EmpresariosLayout>
+        <Loader/>
+      </EmpresariosLayout>
     )
   }
-
 
   return (
     <EmpresariosLayout>

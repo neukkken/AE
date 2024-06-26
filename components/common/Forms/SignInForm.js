@@ -52,8 +52,8 @@ export default function SignInForm() {
         AuthUser();
       }
 
-    } else if (inputEmail == null || inputPassword == null){
-      prompt('Hola')
+    } else if (inputEmail == '' || inputPassword == ''){
+      alert('error al iniciar, credenciales vacias')
     }    
   };
 

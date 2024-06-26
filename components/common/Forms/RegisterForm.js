@@ -12,19 +12,29 @@ export default function RegisterForm() {
   const [inputNumCC, setInputNumCC] = useState('')
   const [inputTel, setInputTel] = useState('')
   const [inputCarac, setInputCarac] = useState('')
-  
 
-  function Register(){
-    let data = {
-      "nombre": "string",
-      "apellido": "string",
-      "email": "string",
-      "numIdentificacion": "string",
-      "telefono": "string",
-      "caracterizacion": "string",
-      "contrasena": "string",
-      "role": {}
-    }
+
+  let data = {
+    "nombre": "string",
+    "apellido": "string",
+    "email": "string",
+    "numIdentificacion": "string",
+    "telefono": "string",
+    "caracterizacion": "string",
+    "contrasena": "string",
+    "role": {}
+  }
+  async function Register(){
+
+    const response = await fetch(URL_API_LOGIN, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+  
+    const result = await response.json();
   }
 
   return (
