@@ -5,8 +5,7 @@ import Auth from "../../utils/helperAuth";
 
 export default function Header() {
   function logOut() {
-    localStorage.removeItem('token');
-    
+    localStorage.removeItem("token");
   }
 
   return (
@@ -113,7 +112,14 @@ export default function Header() {
             <path d="M15 12h-12l3 -3" />
             <path d="M6 15l-3 -3" />
           </svg>
-          <Link href="/" onClick={() => {logOut()}}>Cerrar Sesion</Link>
+          <Link
+            href="/"
+            onClick={() => {
+              logOut();
+            }}
+          >
+            Cerrar Sesion
+          </Link>
         </li>
       </nav>
       <div className="searchBar">

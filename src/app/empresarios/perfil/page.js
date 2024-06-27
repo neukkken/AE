@@ -6,9 +6,8 @@ const URL_API_AUTH = "https://projetback-r7o8.onrender.com/auth/profile";
 import Loader from "@/app/loader/page";
 
 export default function Perfil() {
-
   const [data, setData] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem('token'));
+  const [token, setToken] = useState(localStorage.getItem("token"));
 
   useEffect(() => {
     fetch(URL_API_AUTH, {
@@ -22,12 +21,12 @@ export default function Perfil() {
       .then((data) => setData(data.sub));
   }, []);
 
-  if(data == null){
-    return(
+  if (data == null) {
+    return (
       <EmpresariosLayout>
-        <Loader/>
+        <Loader />
       </EmpresariosLayout>
-    )
+    );
   }
 
   return (
@@ -80,6 +79,4 @@ export default function Perfil() {
       </section>
     </EmpresariosLayout>
   );
-
-  
 }

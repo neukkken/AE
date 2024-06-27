@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { Roboto } from "next/font/google";
 import "./globals.css";
 import Auth from "../../utils/helperAuth";
@@ -12,13 +12,11 @@ export const metadata = {
   description: "Make your dreams true",
 };
 
-export default function viewsLayout({children}) {
-    Auth();
-    return(
-        <html lang="es">
-            <body className={roboto.className}>
-                {children}
-            </body>
-        </html>
-    )
+export default function viewsLayout({ children }) {
+  Auth();
+  return (
+    <html lang="es">
+      <body className={roboto.className}>{children}</body>
+    </html>
+  );
 }

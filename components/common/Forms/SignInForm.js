@@ -14,8 +14,8 @@ export default function SignInForm() {
   const [user, setUser] = useState("");
   const router = useRouter();
 
-  if(token !== null){
-    router.push('/empresarios/perfil')
+  if (token !== null) {
+    router.push("/empresarios/perfil");
   }
 
   const handleChangeEmail = (event) => {
@@ -33,7 +33,7 @@ export default function SignInForm() {
       contrasena: inputPassword,
     };
 
-    if (inputEmail !== '' && inputPassword !== ''){
+    if (inputEmail !== "" && inputPassword !== "") {
       const response = await fetch(URL_API_LOGIN, {
         method: "POST",
         headers: {
@@ -48,13 +48,12 @@ export default function SignInForm() {
 
       if (!response.ok) {
         throw new Error("Error al iniciar sesión");
-      }   else {
+      } else {
         AuthUser();
       }
-
-    } else if (inputEmail == '' || inputPassword == ''){
-      alert('error al iniciar, credenciales vacias')
-    }    
+    } else if (inputEmail == "" || inputPassword == "") {
+      alert("error al iniciar, credenciales vacias");
+    }
   };
 
   const AuthUser = async () => {
@@ -99,13 +98,13 @@ export default function SignInForm() {
         type="password"
         placeholder="Contraseña"
       />
-      
+
       <label>
-      <PrimaryButton>Iniciar Sesion</PrimaryButton>
-      <section>
+        <PrimaryButton>Iniciar Sesion</PrimaryButton>
+        <section>
           <Link href="/olvidarcontraseña">Olvidaste tu contraseña?</Link>
           <Link href="/registro">No tienes cuenta?</Link>
-      </section>
+        </section>
       </label>
     </form>
   );
