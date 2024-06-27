@@ -13,33 +13,48 @@ export default function RegisterForm() {
   const [inputPassword, setInputPassword] = useState("");
   const [inputConfirmPassword, setInputConfirmPassword] = useState("");
 
-  let data = {
-    nombre: inputName,
-    apellido: inputSecondName,
-    email: inputEmail,
-    numIdentificacion: inputNumCC,
-    telefono: '',
-    caracterizacion: "ninguna",
-    contrasena: inputPassword,
-    role: 'Aprendiz'
+  const data = {
+    "nombre": inputName,
+    "apellido": inputSecondName,
+    "email": inputEmail,
+    "numIdentificacion": inputNumCC,
+    "telefono": "1",
+    "caracterizacion": "ninguna",
+    "contrasena": inputPassword,
+    "role": "Aprendiz"
   };
 
   async function Register() {
-    if(inputPassword !== inputConfirmPassword){
-      alert('Contrasenas no coinciden')
-    }else{
-      const response = await fetch(URL_API_LOGIN, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-  
-      const result = await response.json();
-      
+    if (inputPassword !== inputConfirmPassword) {
+        alert('Las contraseñas no coinciden');
+        return;
     }
-  }
+
+    try {
+        const response = await fetch(URL_API_REGISTER, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+          throw new Error('Error al registrar');
+        }
+        console.log(response)
+        const result = await response.json();
+        // Aquí puedes manejar el resultado de la API según tus necesidades
+        // Por ejemplo, mostrar un mensaje de éxito
+        alert('Registro exitoso');
+        console.log(result); // Puedes ver la respuesta en la consola para depuración
+
+    } catch (error) {
+        console.error('Error durante el registro:', error.message);
+        alert('Error al registrar');
+    }
+}
+
 
   const handleChangeName = (event) => {
     setInputName(event.target.value);
@@ -64,6 +79,8 @@ export default function RegisterForm() {
   const handleChangeConfirmPassword = (event) => {
     setInputConfirmPassword(event.target.value);
   };
+
+  console.log(data)
 
   return (
     <form className="FormNav" >
@@ -105,7 +122,7 @@ export default function RegisterForm() {
         placeholder="Confirmar Contraseña"
       />
       <section>
-        <PrimaryButton OnClick={() => (Register())}>Registrar</PrimaryButton>
+        <PrimaryButton onClick={() => (Register())}>Registrar</PrimaryButton>
         <span>
           <Link href="/iniciarsesion">Ya tienes cuenta?</Link>
         </span>
