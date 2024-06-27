@@ -1,0 +1,28 @@
+.nuevosUsuarios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.CardRequest {
+  min-width: 200px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.tituloDelRoll {
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 20px;
+  transition: ease-in-out 0.3s;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.tituloDelRoll:hover {
+  color: #159900;
+  transform: scale(102%);
+}
