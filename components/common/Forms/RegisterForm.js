@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
 import PrimaryButton from "../PrimaryButton";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const URL_API_REGISTER = "https://projetback-r7o8.onrender.com/auth/usuario";
 
@@ -12,117 +13,101 @@ export default function RegisterForm() {
   const [inputNumCC, setInputNumCC] = useState("");
   const [inputPassword, setInputPassword] = useState("");
   const [inputConfirmPassword, setInputConfirmPassword] = useState("");
+  const router = useRouter();
 
   const data = {
     "nombre": inputName,
     "apellido": inputSecondName,
     "email": inputEmail,
     "numIdentificacion": inputNumCC,
-    "telefono": "1",
+    "telefono": "320",
     "caracterizacion": "ninguna",
     "contrasena": inputPassword,
     "role": "Aprendiz"
   };
-
-  async function Register() {
+  
+  async function Register(event) {
+    event.preventDefault();
     if (inputPassword !== inputConfirmPassword) {
-        alert('Las contraseñas no coinciden');
-        return;
+      alert('Las contraseñas no coinciden');
+      return;
     }
 
     try {
-        const response = await fetch(URL_API_REGISTER, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-        });
+      const response = await fetch(URL_API_REGISTER, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-        if (!response.ok) {
-          throw new Error('Error al registrar');
-        }
-        console.log(response)
-        const result = await response.json();
-        // Aquí puedes manejar el resultado de la API según tus necesidades
-        // Por ejemplo, mostrar un mensaje de éxito
-        alert('Registro exitoso');
-        console.log(result); // Puedes ver la respuesta en la consola para depuración
+      if (!response.ok) {
+        throw new Error('Error al registrar');
+      }
 
+      const result = await response.json();
+      alert('Registro exitoso');
+      console.log(result);
+
+      router.push("/iniciarsesion")
+
+      // Reset the form
+      setInputName("");
+      setInputSecondName("");
+      setInputEmail("");
+      setInputNumCC("");
+      setInputPassword("");
+      setInputConfirmPassword("");
+      
     } catch (error) {
-        console.error('Error durante el registro:', error.message);
-        alert('Error al registrar');
+      console.error('Error durante el registro:', error.message);
+      console.log(error.message)
+      alert('Error al registrar');
     }
-}
-
-
-  const handleChangeName = (event) => {
-    setInputName(event.target.value);
-  };
-
-  const handleChangeEmail = (event) => {
-    setInputEmail(event.target.value);
-  };
-
-  const handleChangeNumCC = (event) => {
-    setInputNumCC(event.target.value);
-  };
-
-  const handleChangeSecondName = (event) => {
-    setInputSecondName(event.target.value);
-  };
-
-  const handleChangePassword = (event) => {
-    setInputPassword(event.target.value);
-  };
-
-  const handleChangeConfirmPassword = (event) => {
-    setInputConfirmPassword(event.target.value);
-  };
-
-  console.log(data)
+  }
 
   return (
-    <form className="FormNav" >
+    <form className="FormNav" onSubmit={Register}>
       <h1>Registro</h1>
       <input
         value={inputName}
-        onChange={handleChangeName}
+        onChange={(e) => setInputName(e.target.value)}
         type="text"
         placeholder="Nombre"
       />
       <input
         value={inputSecondName}
-        onChange={handleChangeSecondName}
+        onChange={(e) => setInputSecondName(e.target.value)}
         type="text"
         placeholder="Apellido"
       />
       <input
         value={inputNumCC}
-        onChange={handleChangeNumCC}
+        onChange={(e) => setInputNumCC(e.target.value)}
         type="text"
         placeholder="Numero de Documento"
       />
       <input
         value={inputEmail}
-        onChange={handleChangeEmail}
+        onChange={(e) => setInputEmail(e.target.value)}
         type="text"
         placeholder="Correo Electronico"
       />
       <input
         value={inputPassword}
-        onChange={handleChangePassword}
+        onChange={(e) => setInputPassword(e.target.value)}
         type="password"
         placeholder="Contraseña"
       />
       <input
         value={inputConfirmPassword}
-        onChange={handleChangeConfirmPassword}
+        onChange={(e) => setInputConfirmPassword(e.target.value)}
         type="password"
         placeholder="Confirmar Contraseña"
       />
       <section>
-        <PrimaryButton onClick={() => (Register())}>Registrar</PrimaryButton>
+        <PrimaryButton type="submit">Registrar</PrimaryButton>
         <span>
           <Link href="/iniciarsesion">Ya tienes cuenta?</Link>
         </span>
