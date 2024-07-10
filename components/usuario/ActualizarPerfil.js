@@ -1,6 +1,7 @@
 
 import Footer from "../common/Footer";
 import Header from "../common/Header";
+import PrimaryButton from "../common/PrimaryButton";
 import "../../src/Styles/actualizarperfil.css";
 
 export default function ActualizarPerfil() {
@@ -54,7 +55,9 @@ export default function ActualizarPerfil() {
               <input type="text" id="direccion" name="direccion" />
             </div>
 
-            <button type="submit">Actualizar</button>
+            <div className="button">
+            <PrimaryButton>Actualizar </PrimaryButton>
+            </div>
           </form>
         </div>
       </div>

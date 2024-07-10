@@ -2,6 +2,7 @@
 import Footer from "../common/Footer";
 import Header from "../common/Header";
 import "../../src/Styles/subirproyectos.css";
+import PrimaryButton from "../common/PrimaryButton";
 
 export default function SubirProyecto() {
   const handleFileClick = () => {
@@ -115,10 +116,8 @@ export default function SubirProyecto() {
             </span>
           </div>
 
-          <div className="form-group">
-            <button type="submit" className="btn-submit">
-              Enviar Solicitud
-            </button>
+          <div className="button">
+            <PrimaryButton> Enviar Solicitud</PrimaryButton>
           </div>
         </form>
       </div>

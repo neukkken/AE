@@ -24,6 +24,7 @@ export default function Historial() {
                 <th>Descripción</th>
               </tr>
             </thead>
+            
             <tbody>
               {/* Ejemplo de cambios */}
               <tr>
