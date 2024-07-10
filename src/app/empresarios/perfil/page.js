@@ -1,13 +1,40 @@
+"use client";
 import CardProjectResumen from "../../../../components/common/CardProjectResumen";
 import EmpresariosLayout from "../../../../containers/EmpresariosLayout";
+import { useState, useEffect } from "react";
+const URL_API_AUTH = "https://projetback-r7o8.onrender.com/auth/profile";
+import Loader from "@/app/loader/page";
 
 export default function Perfil() {
+  const [data, setData] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem("token"));
+
+  useEffect(() => {
+    fetch(URL_API_AUTH, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => setData(data.sub));
+  }, []);
+
+  if (data == null) {
+    return (
+      <EmpresariosLayout>
+        <Loader />
+      </EmpresariosLayout>
+    );
+  }
+
   return (
     <EmpresariosLayout>
       <section className="ProfileEmpresas">
         <img className="ProfileImg" alt="" />
         <h1>
-          Bienvenido, Tu Nombre
+          Bienvenido, {data.nombre} {data.apellido}!
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -29,11 +56,10 @@ export default function Perfil() {
         <section>
           <aside>
             <h2>Informacion</h2>
-            <span>Nombre:</span>
-            <span>Apellidos:</span>
-            <span>Correo Electronico:</span>
-            <span>Numero Telefonico: </span>
-            <span>Tipo de empresa:</span>
+            <span>Nombre: {data.nombre}</span>
+            <span>Apellidos: {data.apellido}</span>
+            <span>Correo Electronico: {data.email}</span>
+            <span>Numero Telefonico: {data.telefono}</span>
           </aside>
           <aside>
             <h2>Proyectos Apoyados</h2>
