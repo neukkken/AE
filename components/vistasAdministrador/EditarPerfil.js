@@ -1,11 +1,11 @@
-import Footer from "../common/Footer";
-import Header from "../common/Header";
+
 import "../../src/Styles/editarperfil.css";
 
 export default function EditarPerfil() {
+
     return (
         <>
-            <Header />
+           
             <div className="contenedor-principal">
                 <div className="contenedor-formulario">
                     <div className="titulo">¡Actualizar Perfil!</div>
@@ -54,10 +54,10 @@ export default function EditarPerfil() {
                         </div>
 
                         <button type="submit">Actualizar</button>
+                       
                     </form>
                 </div>
             </div>
-            <Footer />
         </>
     );
 }
