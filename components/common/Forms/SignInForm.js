@@ -3,6 +3,8 @@ import Link from "next/link";
 import PrimaryButton from "../PrimaryButton";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Loader from "@/app/loader/page";
+import FullHeightLayout from "../../../containers/FullHeightLayout";
 
 const URL_API_LOGIN = "https://projetback-r7o8.onrender.com/auth/login";
 const URL_API_AUTH = "https://projetback-r7o8.onrender.com/auth/profile";
@@ -43,12 +45,12 @@ export default function SignInForm() {
       });
 
       const result = await response.json();
-      localStorage.setItem("token", result.access_token);
-      setToken(localStorage.getItem("token"));
-
+    
       if (!response.ok) {
-        throw new Error("Error al iniciar sesión");
+        alert("Error al iniciar sesión")
       } else {
+        localStorage.setItem("token", result.access_token);
+        setToken(localStorage.getItem("token"));
         AuthUser();
       }
     } else if (inputEmail == "" || inputPassword == "") {
@@ -82,6 +84,14 @@ export default function SignInForm() {
 
   console.log(user);
   console.log(inputEmail, "password:", inputPassword);
+
+  function loading(){
+    return(
+      <FullHeightLayout>
+        <Loader/>
+      </FullHeightLayout>
+    )
+  }
 
   return (
     <form className="FormNav" onSubmit={handleSumbit}>
