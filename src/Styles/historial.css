@@ -1,0 +1,97 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #f8f8f8;
+  font-family: 'Arial', sans-serif;
+}
+
+.content {
+  flex: 1 0 auto;
+  padding: 20px;
+  font-size: 18px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.content h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2.5em;
+  color: #333;
+}
+
+.table-container {
+  max-width: 90%;
+  margin: 0 auto;
+  overflow-x: auto;
+  padding: 20px;
+  background: #b4c0db51;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 1em;
+  text-align: left;
+}
+
+.history-table thead tr {
+  background-color: #57BC;
+  color: #ffffff;
+  text-align: left;
+}
+
+.history-table th,
+.history-table td {
+  padding: 12px 15px;
+}
+
+.history-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+  transition: background-color 0.3s ease;
+}
+
+.history-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.history-table tbody tr:last-of-type {
+  border-bottom: 2px solid #4a90e2;
+}
+
+.history-table tbody tr:hover {
+  background-color: #e2f0fb;
+  cursor: pointer;
+}
+
+.hover-effect {
+  transition: transform 0.2s ease-in-out;
+}
+
+.hover-effect:hover {
+  transform: scale(1.02);
+}
+
+.user-link {
+  color: #010d1c;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.user-link:hover {
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
