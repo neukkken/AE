@@ -44,7 +44,6 @@ export default function SubirProyecto() {
               />
             </div>
           </div>
-
           <div className="form-group">
             <label htmlFor="idea">Idea del proyecto:</label>
             <textarea className="form-control" id="idea"></textarea>
