@@ -3,6 +3,8 @@ import Link from "next/link";
 import PrimaryButton from "../PrimaryButton";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { AuthUser } from "../../../utils/AuthUser";
+import Loader from "@/app/loader/page";
 
 const URL_API_REGISTER = "https://projetback-r7o8.onrender.com/auth/usuario";
 
@@ -13,7 +15,13 @@ export default function RegisterForm() {
   const [inputNumCC, setInputNumCC] = useState("");
   const [inputPassword, setInputPassword] = useState("");
   const [inputConfirmPassword, setInputConfirmPassword] = useState("");
+  const [user, setUser] = useState(null)
   const router = useRouter();
+
+  if(localStorage.getItem("token") !== null){
+    AuthUser(localStorage.getItem("token"), setUser, router)
+    return <Loader/>
+  }
 
   const data = {
     "nombre": inputName,
