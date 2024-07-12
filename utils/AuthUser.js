@@ -24,9 +24,6 @@ export const AuthUser = async (accessToken, setUser, router) => {
         case "Administrador":
           router.push("/administrador/editarperfil");
           break;
-        case "Empresa":
-          router.push("/empresarios/perfil");
-          break;
         case "Aprendiz":
           router.push("/usuarios/perfil");
           break;
