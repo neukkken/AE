@@ -13,7 +13,7 @@ export default function VerProyecto() {
   const [error, setError] = useState(null);
 
   const fetchProyectosWithRetry = async (retries = 3) => {
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiX2lkIjoiNjY3ZGI1NzIzOTAzMzg2MmI5MGU0MTk4Iiwibm9tYnJlIjoiRmVybmFuZG8iLCJhcGVsbGlkbyI6IkFyYW5kYSIsImVtYWlsIjoiZmVybmFuZG9AZ21haWwuY29tIiwibnVtSWRlbnRpZmljYWNpb24iOiIxMDA3IiwidGVsZWZvbm8iOiIzMjAiLCJmZWNoYU5hY2ltaWV0byI6IjIwMjQtMDYtMjdUMTg6NDQ6MzMuOTg5WiIsImNhcmFjdGVyaXphY2lvbiI6ImIiLCJjb250cmFzZW5hIjoiJDJiJDEwJG9JZ0Q1dllnWS43VmRSa0pSMTBoM09CbkpRR2N6WGVVV2IudjhpcEVHem1Hbm1xZTR5U0kyIiwicm9sZSI6IkFwcmVuZGl6IiwiX192IjowfSwicm9sZSI6IkFwcmVuZGl6IiwiaWF0IjoxNzE5NTE1NzM0LCJleHAiOjE3MTk1MzM3MzR9.DCwEDZGhAVhBQMCOMuQkI4ig_-8ioextXEA7KiMvZDc";
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiX2lkIjoiNjY3YjlkN2E3NGMwZmM4MTkyOGUzZjRhIiwibm9tYnJlIjoiU2FudGlhZ28iLCJhcGVsbGlkbyI6Ik5hcnZhZXoiLCJlbWFpbCI6InNhbnRpYWdvQGdtYWlsLmNvbSIsIm51bUlkZW50aWZpY2FjaW9uIjoiMTIzNDU2NzgiLCJ0ZWxlZm9ubyI6IjMxMyIsImZlY2hhTmFjaW1pZXRvIjoiMjAyNC0wNi0yNlQwNDo0NzoyMC43MjdaIiwiY2FyYWN0ZXJpemFjaW9uIjoiY2FyYWN0ZXJpemFjaW9uIiwiY29udHJhc2VuYSI6IiQyYiQxMCRPVmpqZDZwaWRQNThyMmhtczU0dk91SHp4elc2RWd6R3J2ZVVhdHAvL0xkS2xDbURWUXVmSyIsInJvbGUiOiJBZG1pbmlzdHJhZG9yIiwiX192IjowfSwicm9sZSI6IkFkbWluaXN0cmFkb3IiLCJpYXQiOjE3MjA4MjQ1NjcsImV4cCI6MTcyMDg0MjU2N30.sItRgmDKJSAI0jMBjnk_P3MDXdUtmoNL5WFtJnBhNTY";
 
     for (let i = 0; i < retries; i++) {
       try {
@@ -52,48 +52,27 @@ export default function VerProyecto() {
     <>
       <Header />
       <div className="projects">
-        <div className="title">Proyectos Postulados</div>
-        <div className="projectsGrid">
-          {proyectos.map((proyecto) => (
-            <div className="projectCard" key={proyecto._id}>
-              <div className="projectName">{proyecto.titulo}</div>
-              <div className="projectDescription">
-                Estado de la Idea: {proyecto.estado_idea}
-              </div>
-              <div className="projectDescription">
-                Objetivo General: {proyecto.objetivo_general}
-              </div>
-              <div className="projectDescription">
-                Objetivos Específicos: {proyecto.objetivos_especificos}
-              </div>
-              <div className="projectDescription">
-                Eje Estratégico: {proyecto.eje_estrategico}
-              </div>
-              <div className="projectDescription">
-                Estado: {proyecto.estado}
-              </div>
-              <div className="projectDescription">
-                Fase: {proyecto.fase_idFase}
-              </div>
-              <div className="projectDescription">
-                Categoría: {proyecto.categoria_idCategoria}
-              </div>
-              <div className="projectDescription">
-                Convocatoria: {proyecto.convocatoria_idConvocatoria}
-              </div>
-              <div className="projectDescription">
-                Usuario Asignado: {proyecto.usuario_id_asignado}
-              </div>
-              <div className="projectDescription">
-                Fecha de Creación: {new Date(proyecto.fecha_creacion).toLocaleDateString()}
-              </div>
-              <Link className="projectDetails" href={`/empresarios/nuevosproyectos/proyecto/${proyecto._id}`}>
-                <button className="projectButton left">Ver Más</button>
-              </Link>
-            </div>
-          ))}
+  <div className="title">Proyectos Postulados</div>
+  <div className="projectsGrid">
+    {proyectos.map((proyecto) => (
+      <div className="projectCard" key={proyecto._id}>
+        <div className="projectName">{proyecto.titulo}</div>
+        <div className="projectDescription">
+          Fecha: {proyecto.fecha}
         </div>
+        <div className="projectDescription">
+          Estado: {proyecto.estado}
+        </div>
+        <div className="projectDescription">
+          Descripción: {proyecto.descripcion}
+        </div>
+        <Link className="projectDetails" href={`/empresarios/nuevosproyectos/proyecto/${proyecto._id}`}>
+          <button className="projectButton left">Ver Más</button>
+        </Link>
       </div>
+    ))}
+  </div>
+</div>
       <Footer />
     </>
   );
