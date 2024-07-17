@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
 import Footer from "../common/Footer";
-import Header from "../common/Header";
+import Header from "../common/HeaderUsuarios";
 import "../../src/Styles/subirproyectos.css";
 import PrimaryButton from "../common/PrimaryButton";
 import axios from "axios";
