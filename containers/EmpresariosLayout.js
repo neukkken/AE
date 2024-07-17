@@ -6,17 +6,22 @@ import { useRouter } from "next/navigation";
 import Loader from "@/app/loader/page";
 import FullHeightLayout from "./FullHeightLayout";
 import { useState, useEffect } from "react";
+import { AuthUser } from "../utils/AuthUser";
 
 const API_URL_PROFILE = "https://projetback-r7o8.onrender.com/auth/profile"
 
 export default function EmpresariosLayout({ children }) {
-  const token = localStorage.getItem("token");
-  if (token === null) {
-    router.push("/iniciarsesion");
-  }
 
+  const token = localStorage.getItem("token");
   const router = useRouter();
   const [user, setUser] = useState(null)
+
+  if (token === null) {
+    router.push("/iniciarsesion");
+  }else{
+    AuthUser(token, setUser, router)
+    return <Loader/>
+  }
 
   useEffect(() => {
     fetch(API_URL_PROFILE, {

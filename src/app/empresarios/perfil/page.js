@@ -1,6 +1,6 @@
 "use client";
 import CardProjectResumen from "../../../../components/common/CardProjectResumen";
-import EmpresariosLayout from "../../../../containers/EmpresariosLayout";
+import AdministradorLayout from "../../../../containers/AdministradorLayout";
 import { useState, useEffect } from "react";
 const URL_API_AUTH = "https://projetback-r7o8.onrender.com/auth/profile";
 import Loader from "@/app/loader/page";
@@ -23,14 +23,14 @@ export default function Perfil() {
 
   if (data == null) {
     return (
-      <EmpresariosLayout>
+      <AdministradorLayout>
         <Loader />
-      </EmpresariosLayout>
+      </AdministradorLayout>
     );
   }
 
   return (
-    <EmpresariosLayout>
+    <AdministradorLayout>
       <section className="ProfileEmpresas">
         <img className="ProfileImg" alt="" />
         <h1>
@@ -77,6 +77,6 @@ export default function Perfil() {
           </aside>
         </section>
       </section>
-    </EmpresariosLayout>
+    </AdministradorLayout>
   );
 }
