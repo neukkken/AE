@@ -1,26 +1,34 @@
 "use client";
-import Link from "next/link";
-import PrimaryButton from "../PrimaryButton";
+
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import PrimaryButton from "../PrimaryButton";
+import Loader from "@/app/loader/page";
+import { AuthUser } from "../../../utils/AuthUser";
 
 const URL_API_LOGIN = "https://projetback-r7o8.onrender.com/auth/login";
-const URL_API_AUTH = "https://projetback-r7o8.onrender.com/auth/profile";
 
 export default function SignInForm() {
   const [inputEmail, setInputEmail] = useState("");
   const [inputPassword, setInputPassword] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  if (token !== null) {
-    router.push("/empresarios/perfil");
-  }
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      setToken(storedToken);
+      AuthUser(storedToken, setUser, router);
+    }
+  }, [router]);
 
   const handleChangeEmail = (event) => {
     setInputEmail(event.target.value);
   };
+
   const handleChangePassword = (event) => {
     setInputPassword(event.target.value);
   };
@@ -28,12 +36,19 @@ export default function SignInForm() {
   const handleSumbit = async (event) => {
     event.preventDefault();
 
+    if (!inputEmail || !inputPassword) {
+      alert("Por favor, completa todos los campos");
+      return;
+    }
+
+    setLoading(true);
+
     const data = {
       email: inputEmail,
       contrasena: inputPassword,
     };
 
-    if (inputEmail !== "" && inputPassword !== "") {
+    try {
       const response = await fetch(URL_API_LOGIN, {
         method: "POST",
         headers: {
@@ -42,70 +57,48 @@ export default function SignInForm() {
         body: JSON.stringify(data),
       });
 
-      const result = await response.json();
-      localStorage.setItem("token", result.access_token);
-      setToken(localStorage.getItem("token"));
-
       if (!response.ok) {
         throw new Error("Error al iniciar sesión");
-      } else {
-        AuthUser();
-      }
-    } else if (inputEmail == "" || inputPassword == "") {
-      alert("error al iniciar, credenciales vacias");
-    }
-  };
-
-  const AuthUser = async () => {
-    try {
-      const response = await fetch(URL_API_AUTH, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error(
-          `Error HTTP ${response.status} - ${response.statusText}`,
-        );
       }
 
       const result = await response.json();
-      setUser(result.user);
-      router.push("/empresarios/perfil");
+      localStorage.setItem("token", result.access_token);
+      setToken(result.access_token);
+      AuthUser(result.access_token, setUser, router);
     } catch (error) {
-      console.error(`Error al verificar la autenticación: ${error.message}`);
+      alert(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
-  console.log(user);
-  console.log(inputEmail, "password:", inputPassword);
+  if (loading || token !== null) {
+    return <Loader />;
+  }
 
   return (
     <form className="FormNav" onSubmit={handleSumbit}>
-      <h1>Inicia Sesion</h1>
+      <h1>Inicia Sesión</h1>
       <input
         value={inputEmail}
         onChange={handleChangeEmail}
         type="email"
-        placeholder="Correo Electronico"
+        placeholder="Correo Electrónico"
+        required
       />
       <input
         value={inputPassword}
         onChange={handleChangePassword}
         type="password"
         placeholder="Contraseña"
+        required
       />
 
-      <label>
-        <PrimaryButton>Iniciar Sesion</PrimaryButton>
-        <section>
-          <Link href="/olvidarcontraseña">Olvidaste tu contraseña?</Link>
-          <Link href="/registro">No tienes cuenta?</Link>
-        </section>
-      </label>
+      <PrimaryButton type="submit">Iniciar Sesión</PrimaryButton>
+      <section>
+        <Link href="/olvidarcontraseña">¿Olvidaste tu contraseña?</Link>
+        <Link href="/registro">¿No tienes cuenta?</Link>
+      </section>
     </form>
   );
 }

@@ -1,10 +1,10 @@
 import Link from "next/link";
 import PrimaryButton from "../../../../../components/common/PrimaryButton";
-import EmpresariosLayout from "../../../../../containers/EmpresariosLayout";
+import AdministradorLayout from "../../../../../containers/AdministradorLayout";
 
 export default function Proyecto() {
   return (
-    <EmpresariosLayout>
+    <AdministradorLayout>
       <section className="ProjectDetail">
         <div>
           <span className="Category">Categoria</span>
@@ -130,6 +130,6 @@ export default function Proyecto() {
           </Link>
         </PrimaryButton>
       </section>
-    </EmpresariosLayout>
+    </AdministradorLayout>
   );
 }

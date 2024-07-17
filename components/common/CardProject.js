@@ -1,10 +1,10 @@
-export default function CardProject() {
+export default function CardProject({data}) {
   return (
     <div className="CardProject">
       <img alt="" />
-      <span className="Category">Categoria</span>
+      <span className="Category">Estado</span>
       <span className="Date">2024.02.18</span>
-      <h1>Titulo del Proyecto</h1>
+      <h1>{data.titulo}</h1>
       <span className="ProjectOwner">Propietario del Proyecto</span>
       <p>
         Lorem Ipsum is simply dummy text of the printing and typesetting

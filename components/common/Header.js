@@ -1,11 +1,12 @@
 "use client";
-
 import Link from "next/link";
-import Auth from "../../utils/helperAuth";
+import Loader from "@/app/loader/page";
 
 export default function Header() {
   function logOut() {
     localStorage.removeItem("token");
+
+    return <Loader/>
   }
 
   return (
