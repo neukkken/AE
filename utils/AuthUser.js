@@ -22,7 +22,7 @@ export const AuthUser = async (accessToken, setUser, router) => {
     if (result.sub.role) {
       switch (result.sub.role) {
         case "Administrador":
-          router.push("/administrador/editarperfil");
+          router.push("/administrador/perfil");
           break;
         case "Aprendiz":
           router.push("/usuarios/perfil");

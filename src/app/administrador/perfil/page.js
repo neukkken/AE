@@ -1,37 +1,14 @@
 "use client";
 import CardProjectResumen from "../../../../components/common/CardProjectResumen";
-import UsuariosLayout from "../../../../containers/UsuariosLayout";
 import { useState, useEffect } from "react";
 const URL_API_AUTH = "https://projetback-r7o8.onrender.com/auth/profile";
 import Loader from "@/app/loader/page";
-
-const URL_API_PROYECTOS =  "https://projetback-r7o8.onrender.com/proyectos" 
+import FullHeightLayout from "../../../../containers/FullHeightLayout";
+import EmpresariosLayout from "../../../../containers/EmpresariosLayout";
 
 export default function Perfil() {
   const [data, setData] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const [proyectos, setProyectos] = useState(null)
-  
-
-  useEffect(() => {
-    fetch(URL_API_PROYECTOS, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}` 
-      }
-    })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => setProyectos(data))
-    .catch(error => console.error('Error fetching proyectos:', error));
-  }, []);
-
-  console.log(proyectos)
 
   useEffect(() => {
     fetch(URL_API_AUTH, {
@@ -47,14 +24,14 @@ export default function Perfil() {
 
   if (data == null) {
     return (
-        <UsuariosLayout>
+        <FullHeightLayout>
             <Loader/>
-        </UsuariosLayout>
+        </FullHeightLayout>
     )
   }
 
   return (
-    <UsuariosLayout>
+    <EmpresariosLayout>
       <section className="ProfileEmpresas">
         <img className="ProfileImg" alt="" />
         <h1>
@@ -85,22 +62,8 @@ export default function Perfil() {
             <span>Correo Electronico: {data.email}</span>
             <span>Numero Telefonico: {data.telefono}</span>
           </aside>
-          <aside>
-            <h2>Proyectos</h2>
-            <CardProjectResumen url="/empresarios/nuevosproyectos/proyecto" />
-            <CardProjectResumen url="/empresarios/nuevosproyectos/proyecto" />
-            <CardProjectResumen url="/empresarios/nuevosproyectos/proyecto" />
-            <CardProjectResumen url="/empresarios/nuevosproyectos/proyecto" />
-            <CardProjectResumen url="/empresarios/nuevosproyectos/proyecto" />
-            <CardProjectResumen url="/empresarios/nuevosproyectos/proyecto" />
-            <CardProjectResumen url="/empresarios/nuevosproyectos/proyecto" />
-            <CardProjectResumen url="/empresarios/nuevosproyectos/proyecto" />
-            <CardProjectResumen url="/empresarios/nuevosproyectos/proyecto" />
-            <CardProjectResumen url="/empresarios/nuevosproyectos/proyecto" />
-            <CardProjectResumen url="/empresarios/nuevosproyectos/proyecto" />
-          </aside>
         </section>
       </section>
-    </UsuariosLayout>
+    </EmpresariosLayout>
   );
 }

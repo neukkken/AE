@@ -44,7 +44,6 @@ export default function UsuariosLayout({ children }) {
     //   .catch(error => console.error('Error fetching usuarios:', error));
   }, [token]);
 
-  console.log(user);
 
   if (user === null) {
     return (

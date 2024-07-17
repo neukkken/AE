@@ -33,7 +33,7 @@ export default function NuevosProyectos() {
 
   console.log(proyectos)
 
-  if(proyectos === null){
+  if(proyectos !== null){
     return(
       <FullHeightLayout>
         <Loader/>

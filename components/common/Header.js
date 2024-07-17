@@ -33,7 +33,7 @@ export default function Header() {
             <path d="M10 14h4" />
             <path d="M12 12v4" />
           </svg>
-          <Link href="/empresarios/nuevosproyectos">Nuevos Proyectos</Link>
+          <Link href="/administrador/nuevosproyectos">Nuevos Proyectos</Link>
         </li>
         <li>
           <svg

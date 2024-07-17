@@ -1,11 +1,10 @@
 "use client"
 import Link from "next/link";
 import CardProject from "../../../../components/common/CardProject";
-import EmpresariosLayout from "../../../../containers/AdministradorLayout";
+import EmpresariosLayout from "../../../../containers/EmpresariosLayout";
 import { useState, useEffect } from "react";
 import Loader from "@/app/loader/page";
 import FullHeightLayout from "../../../../containers/FullHeightLayout";
-import EmpresariosLayout from './../../../../containers/EmpresariosLayout';
 
 const URL_API_PROYECTOS =  "https://projetback-r7o8.onrender.com/proyectos" 
 
