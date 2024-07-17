@@ -7,6 +7,7 @@ import Loader from "@/app/loader/page";
 import FullHeightLayout from "./FullHeightLayout";
 import { useState, useEffect } from "react";
 import { AuthUser } from "../utils/AuthUser";
+import "../src/Styles/anim/aninMain.css";
 
 const API_URL_PROFILE = "https://projetback-r7o8.onrender.com/auth/profile"
 
@@ -16,12 +17,13 @@ export default function EmpresariosLayout({ children }) {
   const router = useRouter();
   const [user, setUser] = useState(null)
 
-  if (token === null) {
-    router.push("/iniciarsesion");
-  }else{
-    AuthUser(token, setUser, router)
-    return <Loader/>
-  }
+  useEffect(() => {
+    if (token === null) {
+      router.push("/iniciarsesion");
+    }else{
+      AuthUser(token, setUser, router)
+    }
+  }, [])
 
   useEffect(() => {
     fetch(API_URL_PROFILE, {
@@ -38,13 +40,10 @@ export default function EmpresariosLayout({ children }) {
         return response.json()
       }
       
-    })
+    }, [])
     .then(data => setUser(data))
     .catch(error => console.error('Error fetching usuarios:', error));
-
   }, [token])
-
-  console.log(user)
   
   if(user === null){
     return(
@@ -56,9 +55,11 @@ export default function EmpresariosLayout({ children }) {
     return (
       <>
         <Header />
-        <ContainerLayout>{children}</ContainerLayout>
+          <ContainerLayout>{children}</ContainerLayout>
         <Footer />
       </>
     );
   }
+    
+  
 }

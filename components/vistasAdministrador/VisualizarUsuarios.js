@@ -21,7 +21,6 @@ export default function VisualizarUsuarios() {
 
   return (
     <>
-      <Header />
       <Link href={`${path}/usersregistrados`}>
         <h1 className="tituloDelRoll">USUARIOS REGISTRADOS</h1>
       </Link>

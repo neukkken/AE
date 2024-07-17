@@ -5,7 +5,6 @@ import "../../src/Styles/editarperfil.css";
 export default function EditarPerfil() {
     return (
         <>
-            <Header />
             <div className="contenedor-principal">
                 <div className="contenedor-formulario">
                     <div className="titulo">¡Actualizar Perfil!</div>
@@ -57,7 +56,6 @@ export default function EditarPerfil() {
                     </form>
                 </div>
             </div>
-            <Footer />
         </>
     );
 }

@@ -1,5 +1,10 @@
 import Dropcampesino from "../../../../components/common/vistasAdministrador/dropdown/DropCampesino";
+import EmpresariosLayout from "../../../../containers/EmpresariosLayout";
 
 export default function DropCampesinos() {
-  return <Dropcampesino />;
+  return (
+    <EmpresariosLayout>
+      <Dropcampesino />
+    </EmpresariosLayout>
+  );
 }

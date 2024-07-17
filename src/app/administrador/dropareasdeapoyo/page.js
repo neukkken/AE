@@ -1,5 +1,10 @@
 import AreaDeApoyo from "../../../../components/common/vistasAdministrador/dropdown/AreaDeApoyo";
+import EmpresariosLayout from "../../../../containers/EmpresariosLayout";
 
 export default function Dropareasdeapoyo() {
-  return <AreaDeApoyo />;
+  return (
+    <EmpresariosLayout>
+      <AreaDeApoyo />
+    </EmpresariosLayout>
+  );
 }
