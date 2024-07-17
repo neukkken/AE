@@ -1,123 +1,163 @@
-"use client";
+'use client';
+
+import { useState } from "react";
+import { useRouter } from 'next/navigation';
 import Footer from "../common/Footer";
 import Header from "../common/Header";
 import "../../src/Styles/subirproyectos.css";
 import PrimaryButton from "../common/PrimaryButton";
+import axios from "axios";
+
+// Función para decodificar el token JWT
+function parseJwt(token) {
+  const base64Url = token.split('.')[1];
+  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
+
+  return JSON.parse(jsonPayload);
+}
 
 export default function SubirProyecto() {
-  const handleFileClick = () => {
-    document.getElementById("document").click();
+  const router = useRouter();
+  const [formData, setFormData] = useState({
+    titulo: "",
+    fecha: "",
+    estado: "En progreso",
+    descripcion: ""
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [id]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    setSuccess(false);
+
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiX2lkIjoiNjY3YjlkN2E3NGMwZmM4MTkyOGUzZjRhIiwibm9tYnJlIjoiU2FudGlhZ28iLCJhcGVsbGlkbyI6Ik5hcnZhZXoiLCJlbWFpbCI6InNhbnRpYWdvQGdtYWlsLmNvbSIsIm51bUlkZW50aWZpY2FjaW9uIjoiMTIzNDU2NzgiLCJ0ZWxlZm9ubyI6IjMxMyIsImZlY2hhTmFjaW1pZXRvIjoiMjAyNC0wNi0yNlQwNDo0NzoyMC43MjdaIiwiY2FyYWN0ZXJpemFjaW9uIjoiY2FyYWN0ZXJpemFjaW9uIiwiY29udHJhc2VuYSI6IiQyYiQxMCRPVmpqZDZwaWRQNThyMmhtczU0dk91SHp4elc2RWd6R3J2ZVVhdHAvL0xkS2xDbURWUXVmSyIsInJvbGUiOiJBZG1pbmlzdHJhZG9yIiwiX192IjowfSwicm9sZSI6IkFkbWluaXN0cmFkb3IiLCJpYXQiOjE3MjEyNDQzNzYsImV4cCI6MTcyMTI2MjM3Nn0.f3tOrafpQfSLBDelwaEQX3jWUA55naUu31yCp-OvUAw";
+    
+    const decodedToken = parseJwt(token);
+    const usuarioId = decodedToken.sub._id;
+
+    const dataToSend = {
+      ...formData,
+      usuarioId: usuarioId
+    };
+
+    console.log("Enviando datos:", dataToSend); // Log para depuración
+
+    try {
+      const response = await axios.post(
+        "https://projetback-r7o8.onrender.com/proyectos",
+        dataToSend,
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        }
+      ); 
+      console.log("Respuesta del servidor:", response.data); // Log para depuración
+      setSuccess(true);
+      // Limpiar el formulario después de un envío exitoso
+      setFormData({
+        titulo: "",
+        fecha: "",
+        estado: "En progreso",
+        descripcion: ""
+      });
+      // Mostrar alerta de éxito
+      alert("Proyecto subido exitosamente");
+      // Opcional: redirigir después de un breve retraso
+      setTimeout(() => {
+        router.push('/ruta-a-ver-proyectos');
+      }, 2000);
+    } catch (err) {
+      console.error("Error detallado:", err.response?.data || err.message);
+      setError(err.response?.data?.message || err.message);
+      // Mostrar alerta de error
+      alert("Error al subir el proyecto: " + (err.response?.data?.message || err.message));
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <>
       <Header />
       <div className="container">
-        <form>
+        <form onSubmit={handleSubmit}>
           <h2>Datos del proyecto</h2>
 
           <div className="form-group">
-            <label htmlFor="projectName">Nombre del proyecto:</label>
-            <input type="text" className="form-control" id="projectName" />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="integrantes">Integrantes:</label>
-            <div className="integrantes-group">
-              <input
-                type="text"
-                className="form-control"
-                id="integrante1"
-                placeholder="Integrante 1"
-              />
-              <input
-                type="text"
-                className="form-control"
-                id="integrante2"
-                placeholder="Integrante 2"
-              />
-              <input
-                type="text"
-                className="form-control"
-                id="integrante3"
-                placeholder="Agregar Integrante"
-              />
-            </div>
-          </div>
-          <div className="form-group">
-            <label htmlFor="idea">Idea del proyecto:</label>
-            <textarea className="form-control" id="idea"></textarea>
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="ejeEstrategico">Eje Estratégico:</label>
-            <input type="text" className="form-control" id="ejeEstrategico" />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="objetivos">Objetivos del proyecto:</label>
-            <textarea className="form-control" id="objetivos"></textarea>
-          </div>
-          <label htmlFor="document" className="adjuntarDocumento">
-            Adjuntar Documento:
-          </label>
-          <div className="form-group file-upload">
+            <label htmlFor="titulo">Título del proyecto:</label>
             <input
-              type="file"
+              type="text"
               className="form-control"
-              id="document"
-              style={{ display: "none" }}
+              id="titulo"
+              value={formData.titulo}
+              onChange={handleChange}
+              required
             />
-            <span onClick={handleFileClick} className="pdf-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="icon icon-tabler icon-tabler-file-type-pdf"
-                width="44"
-                height="44"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="#ff2825"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                <path d="M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4" />
-                <path d="M5 18h1.5a1.5 1.5 0 0 0 0 -3h-1.5v6" />
-                <path d="M17 18h2" />
-                <path d="M20 15h-3v6" />
-                <path d="M11 15v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1z" />
-              </svg>
-            </span>
-            <span onClick={handleFileClick} className="docx-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="icon icon-tabler icon-tabler-file-type-docx"
-                width="44"
-                height="44"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke=" #0000ff"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                <path d="M5 12v-7a2 2 0 0 1 2 -2h7l5 5v4" />
-                <path d="M2 15v6h1a2 2 0 0 0 2 -2v-2a2 2 0 0 0 -2 -2h-1z" />
-                <path d="M17 16.5a1.5 1.5 0 0 0 -3 0v3a1.5 1.5 0 0 0 3 0" />
-                <path d="M9.5 15a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1 -3 0v-3a1.5 1.5 0 0 1 1.5 -1.5z" />
-                <path d="M19.5 15l3 6" />
-                <path d="M19.5 21l3 -6" />
-              </svg>
-            </span>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="fecha">Fecha:</label>
+            <input
+              type="date"
+              className="form-control"
+              id="fecha"
+              value={formData.fecha}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="estado">Estado:</label>
+            <select
+              className="form-control"
+              id="estado"
+              value={formData.estado}
+              onChange={handleChange}
+              required
+            >
+              <option value="En progreso">En progreso</option>
+              <option value="Completado">Completado</option>
+              <option value="Pendiente">Pendiente</option>
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="descripcion">Descripción del proyecto:</label>
+            <textarea
+              className="form-control"
+              id="descripcion"
+              value={formData.descripcion}
+              onChange={handleChange}
+              required
+            ></textarea>
           </div>
 
           <div className="button">
-            <PrimaryButton> Enviar Solicitud</PrimaryButton>
+            <PrimaryButton type="submit" disabled={loading}>
+              {loading ? "Enviando..." : "Enviar"}
+            </PrimaryButton>
           </div>
+          {error && <p className="error-message">Error al subir el proyecto: {error}</p>}
+          {success && <p className="success-message">¡Proyecto subido exitosamente!</p>}
         </form>
       </div>
       <Footer />
