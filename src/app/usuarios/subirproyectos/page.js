@@ -3,6 +3,8 @@ import UsuariosLayout from "../../../../containers/UsuariosLayout";
 
 export default function subirproyectos() {
   return (
-    <SubirProyecto />
+    <UsuariosLayout>
+      <SubirProyecto />
+    </UsuariosLayout>
   );
 }

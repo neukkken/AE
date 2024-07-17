@@ -4,6 +4,7 @@ import UsuariosLayout from "../../../../containers/UsuariosLayout";
 import { useState, useEffect } from "react";
 const URL_API_AUTH = "https://projetback-r7o8.onrender.com/auth/profile";
 import Loader from "@/app/loader/page";
+import Link from "next/link";
 
 const URL_API_PROYECTOS =  "https://projetback-r7o8.onrender.com/proyectos" 
 
@@ -59,6 +60,7 @@ export default function Perfil() {
         <img className="ProfileImg" alt="" />
         <h1>
           Bienvenido, {data.nombre} {data.apellido}!
+          <Link href="/usuarios/actualizarperfil">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -76,6 +78,7 @@ export default function Perfil() {
             <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
             <path d="M16 5l3 3" />
           </svg>
+          </Link>
         </h1>
         <section>
           <aside>

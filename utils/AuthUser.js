@@ -2,6 +2,13 @@
 
 const URL_API_AUTH = "https://projetback-r7o8.onrender.com/auth/profile";
 
+// Mapa de roles a rutas permitidas
+const roleToRouteMap = {
+  "Administrador": ["/administrador/perfil", "/administrador/nuevosproyectos"],
+  "Aprendiz": ["/usuarios/perfil", "/usuarios/subirproyectos"],
+  // Agrega más roles y rutas según sea necesario
+};
+
 export const AuthUser = async (accessToken, setUser, router) => {
   try {
     const response = await fetch(URL_API_AUTH, {
@@ -19,19 +26,22 @@ export const AuthUser = async (accessToken, setUser, router) => {
     const result = await response.json();
     setUser(result);
 
-    if (result.sub.role) {
-      switch (result.sub.role) {
-        case "Administrador":
-          router.push("/administrador/perfil");
-          break;
-        case "Aprendiz":
-          router.push("/usuarios/perfil");
-          break;
-        default:
-          break;
+    const userRole = result.sub.role;
+
+    if (!userRole) {
+      console.error("El usuario no tiene un rol definido");
+      return;
+    }
+
+    const allowedRoutes = roleToRouteMap[userRole];
+
+    if (allowedRoutes) {
+      const currentRoute = router.pathname;
+      if (!allowedRoutes.includes(currentRoute)) {
+        router.push(allowedRoutes[0]); // Redirige a la primera ruta permitida del rol
       }
     } else {
-      console.error("El usuario no tiene un rol definido");
+      console.error("Rol desconocido o ruta no definida para el rol: " + userRole);
     }
   } catch (error) {
     console.error(`Error al verificar la autenticación: ${error.message}`);

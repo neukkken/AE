@@ -96,7 +96,7 @@ export default function SubirProyecto() {
 
   return (
     <>
-      <Header />
+
       <div className="container">
         <form onSubmit={handleSubmit}>
           <h2>Datos del proyecto</h2>
@@ -160,7 +160,7 @@ export default function SubirProyecto() {
           {success && <p className="success-message">¡Proyecto subido exitosamente!</p>}
         </form>
       </div>
-      <Footer />
+      
     </>
   );
 }

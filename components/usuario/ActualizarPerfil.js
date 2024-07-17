@@ -1,6 +1,6 @@
 
 import Footer from "../common/Footer";
-import Header from "../common/Header";
+import Header from "../common/HeaderUsuarios";
 import PrimaryButton from "../common/PrimaryButton";
 import "../../src/Styles/actualizarperfil.css";
 
