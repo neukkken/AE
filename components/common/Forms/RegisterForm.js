@@ -1,8 +1,8 @@
 "use client";
 import Link from "next/link";
 import PrimaryButton from "../PrimaryButton";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { AuthUser } from "../../../utils/AuthUser";
 import Loader from "@/app/loader/page";
 
@@ -15,29 +15,36 @@ export default function RegisterForm() {
   const [inputNumCC, setInputNumCC] = useState("");
   const [inputPassword, setInputPassword] = useState("");
   const [inputConfirmPassword, setInputConfirmPassword] = useState("");
-  const [user, setUser] = useState(null)
+  const [inputBirthDate, setInputBirthDate] = useState(""); // Estado para fecha de nacimiento
+  const [user, setUser] = useState(null);
   const router = useRouter();
 
-  if(localStorage.getItem("token") !== null){
-    AuthUser(localStorage.getItem("token"), setUser, router)
-    return <Loader/>
+  useEffect(() => {
+    if (localStorage.getItem("token") !== null) {
+      AuthUser(localStorage.getItem("token"), setUser, router);
+    }
+  }, [router]);
+
+  if (user) {
+    return <Loader />;
   }
 
   const data = {
-    "nombre": inputName,
-    "apellido": inputSecondName,
-    "email": inputEmail,
-    "numIdentificacion": inputNumCC,
-    "telefono": "320",
-    "caracterizacion": "ninguna",
-    "contrasena": inputPassword,
-    "role": "Aprendiz"
+    nombre: inputName,
+    apellido: inputSecondName,
+    email: inputEmail,
+    numIdentificacion: inputNumCC,
+    telefono: "320",
+    caracterizacion: "ninguna",
+    contrasena: inputPassword,
+    role: "Aprendiz",
+    fechaNacimiento: inputBirthDate + "T00:00:00.000Z", // Formatear fecha de nacimiento
   };
-  
+
   async function Register(event) {
     event.preventDefault();
     if (inputPassword !== inputConfirmPassword) {
-      alert('Las contraseñas no coinciden');
+      alert("Las contraseñas no coinciden");
       return;
     }
 
@@ -51,14 +58,14 @@ export default function RegisterForm() {
       });
 
       if (!response.ok) {
-        throw new Error('Error al registrar');
+        throw new Error("Error al registrar");
       }
 
       const result = await response.json();
-      alert('Registro exitoso');
+      alert("Registro exitoso");
       console.log(result);
 
-      router.push("/iniciarsesion")
+      router.push("/iniciarsesion");
 
       // Reset the form
       setInputName("");
@@ -67,11 +74,11 @@ export default function RegisterForm() {
       setInputNumCC("");
       setInputPassword("");
       setInputConfirmPassword("");
-      
+      setInputBirthDate(""); // Reset fecha de nacimiento
     } catch (error) {
-      console.error('Error durante el registro:', error.message);
-      console.log(error.message)
-      alert('Error al registrar');
+      console.error("Error durante el registro:", error.message);
+      console.log(error.message);
+      alert("Error al registrar: " + error.message);
     }
   }
 
@@ -113,6 +120,12 @@ export default function RegisterForm() {
         onChange={(e) => setInputConfirmPassword(e.target.value)}
         type="password"
         placeholder="Confirmar Contraseña"
+      />
+      <input
+        value={inputBirthDate}
+        onChange={(e) => setInputBirthDate(e.target.value)}
+        type="date"
+        placeholder="Fecha de Nacimiento"
       />
       <section>
         <PrimaryButton type="submit">Registrar</PrimaryButton>

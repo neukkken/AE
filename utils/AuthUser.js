@@ -2,11 +2,9 @@
 
 const URL_API_AUTH = "https://projetback-r7o8.onrender.com/auth/profile";
 
-// Mapa de roles a rutas permitidas
 const roleToRouteMap = {
   "Administrador": ["/administrador/perfil", "/administrador/nuevosproyectos"],
   "Aprendiz": ["/usuarios/perfil", "/usuarios/subirproyectos"],
-  // Agrega más roles y rutas según sea necesario
 };
 
 export const AuthUser = async (accessToken, setUser, router) => {
@@ -37,8 +35,10 @@ export const AuthUser = async (accessToken, setUser, router) => {
 
     if (allowedRoutes) {
       const currentRoute = router.pathname;
+      console.log(router.pathname)
+
       if (!allowedRoutes.includes(currentRoute)) {
-        router.push(allowedRoutes[0]); // Redirige a la primera ruta permitida del rol
+        router.push(allowedRoutes[0]);
       }
     } else {
       console.error("Rol desconocido o ruta no definida para el rol: " + userRole);
