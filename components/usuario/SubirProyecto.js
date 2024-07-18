@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
-import Footer from "../common/Footer";
-import Header from "../common/HeaderUsuarios";
 import "../../src/Styles/subirproyectos.css";
 import PrimaryButton from "../common/PrimaryButton";
 import axios from "axios";
@@ -46,7 +44,7 @@ export default function SubirProyecto() {
     setError(null);
     setSuccess(false);
 
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOnsiX2lkIjoiNjY3YjlkN2E3NGMwZmM4MTkyOGUzZjRhIiwibm9tYnJlIjoiU2FudGlhZ28iLCJhcGVsbGlkbyI6Ik5hcnZhZXoiLCJlbWFpbCI6InNhbnRpYWdvQGdtYWlsLmNvbSIsIm51bUlkZW50aWZpY2FjaW9uIjoiMTIzNDU2NzgiLCJ0ZWxlZm9ubyI6IjMxMyIsImZlY2hhTmFjaW1pZXRvIjoiMjAyNC0wNi0yNlQwNDo0NzoyMC43MjdaIiwiY2FyYWN0ZXJpemFjaW9uIjoiY2FyYWN0ZXJpemFjaW9uIiwiY29udHJhc2VuYSI6IiQyYiQxMCRPVmpqZDZwaWRQNThyMmhtczU0dk91SHp4elc2RWd6R3J2ZVVhdHAvL0xkS2xDbURWUXVmSyIsInJvbGUiOiJBZG1pbmlzdHJhZG9yIiwiX192IjowfSwicm9sZSI6IkFkbWluaXN0cmFkb3IiLCJpYXQiOjE3MjEyNDQzNzYsImV4cCI6MTcyMTI2MjM3Nn0.f3tOrafpQfSLBDelwaEQX3jWUA55naUu31yCp-OvUAw";
+    const token = localStorage.getItem("token")
     
     const decodedToken = parseJwt(token);
     const usuarioId = decodedToken.sub._id;
@@ -125,7 +123,7 @@ export default function SubirProyecto() {
             />
           </div>
 
-          <div className="form-group">
+          {/* <div className="form-group">
             <label htmlFor="estado">Estado:</label>
             <select
               className="form-control"
@@ -138,7 +136,7 @@ export default function SubirProyecto() {
               <option value="Completado">Completado</option>
               <option value="Pendiente">Pendiente</option>
             </select>
-          </div>
+          </div> */}
 
           <div className="form-group">
             <label htmlFor="descripcion">Descripción del proyecto:</label>

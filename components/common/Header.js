@@ -1,12 +1,41 @@
 "use client";
 import Link from "next/link";
-import Loader from "@/app/loader/page";
+import { useRouter } from "next/navigation";
+
+const URL_API_LOGOUT = "https://projetback-r7o8.onrender.com/auth/logout"
 
 export default function Header() {
-  function logOut() {
-    localStorage.removeItem("token");
+  const router = useRouter()
 
-    return <Loader/>
+  async function logOut() {
+    const token = localStorage.getItem("token");
+  
+    if (!token) {
+      console.error("No token found in localStorage.");
+    }
+  
+    try {
+      const response = await fetch(URL_API_LOGOUT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ token }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Error HTTP ${response.status} - ${response.statusText}`);
+      }
+  
+      localStorage.removeItem("token");
+
+      router.push("/iniciarsesion")
+    } catch (error) {
+      console.error(`Error al cerrar sesión: ${error.message}`);
+    
+    
+    }
   }
 
   return (

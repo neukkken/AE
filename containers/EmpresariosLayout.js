@@ -20,7 +20,7 @@ export default function EmpresariosLayout({ children }) {
   const currentPath = usePathname();
 
   useEffect(() => {
-    if (token === null) {
+    if (token === null || token === undefined || token == "") {
       router.push("/iniciarsesion");
     }else{
       AuthUser(token, setUser, router, currentPath)

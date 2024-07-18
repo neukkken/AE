@@ -25,7 +25,7 @@ export default function SignInForm() {
       setToken(storedToken);
       AuthUser(storedToken, setUser, router, currentPath);
     }
-  }, [router]);
+  });
 
   const handleChangeEmail = (event) => {
     setInputEmail(event.target.value);
@@ -42,8 +42,6 @@ export default function SignInForm() {
       alert("Por favor, completa todos los campos");
       return;
     }
-
-    setLoading(true);
 
     const data = {
       email: inputEmail,
@@ -69,8 +67,6 @@ export default function SignInForm() {
       AuthUser(result.access_token, setUser, router);
     } catch (error) {
       alert(error.message);
-    } finally {
-      setLoading(false);
     }
   };
 

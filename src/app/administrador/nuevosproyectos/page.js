@@ -44,7 +44,7 @@ export default function NuevosProyectos() {
     return (
       <EmpresariosLayout>
         {proyectos.map(proyecto => {
-          if(proyecto.estado == "Completado"){
+          if(proyecto){
             return <CardProject key={proyecto._id} data={proyecto} />
           }
         })}
