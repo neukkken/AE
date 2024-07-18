@@ -8,6 +8,7 @@ const URL_API_AUTH = "https://projetback-r7o8.onrender.com/auth/profile";
 const roleToRouteMap = {
   "Administrador": ["/administrador/perfil", "/administrador/nuevosproyectos"],
   "Aprendiz": ["/usuarios/perfil", "/usuarios/subirproyectos"],
+  "Usuario": ["/usuarios/perfil", "/usuarios/subirproyectos"],
 };
 
 export const AuthUser = async (accessToken, setUser, router, currentRoute) => {

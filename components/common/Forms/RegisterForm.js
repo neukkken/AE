@@ -2,7 +2,7 @@
 import Link from "next/link";
 import PrimaryButton from "../PrimaryButton";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { AuthUser } from "../../../utils/AuthUser";
 import Loader from "@/app/loader/page";
 import { usePathname } from "next/navigation";
@@ -39,9 +39,11 @@ export default function RegisterForm() {
     telefono: "320",
     caracterizacion: "ninguna",
     contrasena: inputPassword,
-    role: "Aprendiz",
-    fechaNacimiento: inputBirthDate + "T00:00:00.000Z", // Formatear fecha de nacimiento
+    role: "Usuario",
+    fechaNacimiento: inputBirthDate + "T00:00:00.000Z",
   };
+
+  console.log(data.fechaNacimiento)
 
   async function Register(event) {
     event.preventDefault();
@@ -69,14 +71,14 @@ export default function RegisterForm() {
 
       router.push("/iniciarsesion");
 
-      // Reset the form
+      
       setInputName("");
       setInputSecondName("");
       setInputEmail("");
       setInputNumCC("");
       setInputPassword("");
       setInputConfirmPassword("");
-      setInputBirthDate(""); // Reset fecha de nacimiento
+      setInputBirthDate("");
     } catch (error) {
       console.error("Error durante el registro:", error.message);
       console.log(error.message);
