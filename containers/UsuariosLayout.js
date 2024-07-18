@@ -8,6 +8,7 @@ import FullHeightLayout from "./FullHeightLayout";
 import { useState, useEffect } from "react";
 import "../src/Styles/anim/aninMain.css";
 import { AuthUser } from "../utils/AuthUser";
+import { usePathname } from "next/navigation";
 
 const API_URL_PROFILE = "https://projetback-r7o8.onrender.com/auth/profile";
 
@@ -16,12 +17,13 @@ export default function UsuariosLayout({ children }) {
   const token = localStorage.getItem("token");
   const [user, setUser] = useState(null);
   const [fadeIn, setFadeIn] = useState(false);
+  const currentPath = usePathname();
 
   useEffect(() => {
     if (token === null) {
       router.push("/iniciarsesion");
     }else{
-        AuthUser(token, setUser, router)
+        AuthUser(token, setUser, router, currentPath)
     }
     // fetch(API_URL_PROFILE, {
     //   method: "GET",
@@ -55,7 +57,7 @@ export default function UsuariosLayout({ children }) {
     return (
       <div className={`fade-in ${fadeIn ? 'fade-in' : ''}`}>
         <Header />
-        <ContainerLayout>{children}</ContainerLayout>
+          <ContainerLayout>{children}</ContainerLayout>
         <Footer />
       </div>
     );

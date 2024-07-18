@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { AuthUser } from "../../../utils/AuthUser";
 import Loader from "@/app/loader/page";
+import { usePathname } from "next/navigation";
 
 const URL_API_REGISTER = "https://projetback-r7o8.onrender.com/auth/usuario";
 
@@ -18,10 +19,11 @@ export default function RegisterForm() {
   const [inputBirthDate, setInputBirthDate] = useState(""); // Estado para fecha de nacimiento
   const [user, setUser] = useState(null);
   const router = useRouter();
+  const currentPath = usePathname();
 
   useEffect(() => {
     if (localStorage.getItem("token") !== null) {
-      AuthUser(localStorage.getItem("token"), setUser, router);
+      AuthUser(localStorage.getItem("token"), setUser, router, currentPath);
     }
   }, [router]);
 

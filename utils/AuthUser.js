@@ -1,4 +1,7 @@
-"use client";
+'use client';
+
+import { usePathname } from 'next/navigation';
+import { useEffect } from 'react';
 
 const URL_API_AUTH = "https://projetback-r7o8.onrender.com/auth/profile";
 
@@ -7,7 +10,7 @@ const roleToRouteMap = {
   "Aprendiz": ["/usuarios/perfil", "/usuarios/subirproyectos"],
 };
 
-export const AuthUser = async (accessToken, setUser, router) => {
+export const AuthUser = async (accessToken, setUser, router, currentRoute) => {
   try {
     const response = await fetch(URL_API_AUTH, {
       method: "GET",
@@ -34,9 +37,6 @@ export const AuthUser = async (accessToken, setUser, router) => {
     const allowedRoutes = roleToRouteMap[userRole];
 
     if (allowedRoutes) {
-      const currentRoute = router.pathname;
-      console.log(router.pathname)
-
       if (!allowedRoutes.includes(currentRoute)) {
         router.push(allowedRoutes[0]);
       }

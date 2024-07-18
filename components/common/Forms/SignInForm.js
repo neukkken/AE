@@ -6,22 +6,24 @@ import Link from "next/link";
 import PrimaryButton from "../PrimaryButton";
 import Loader from "@/app/loader/page";
 import { AuthUser } from "../../../utils/AuthUser";
+import { usePathname } from "next/navigation";
 
 const URL_API_LOGIN = "https://projetback-r7o8.onrender.com/auth/login";
 
 export default function SignInForm() {
   const [inputEmail, setInputEmail] = useState("");
   const [inputPassword, setInputPassword] = useState("");
-  const [token, setToken] = useState(localStorage.getItem("token"));
+  const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const currentPath = usePathname();
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
       setToken(storedToken);
-      AuthUser(storedToken, setUser, router);
+      AuthUser(storedToken, setUser, router, currentPath);
     }
   }, [router]);
 
